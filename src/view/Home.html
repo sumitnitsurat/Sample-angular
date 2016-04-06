@@ -1,0 +1,41 @@
+<div class="dashboard">
+    <div class="row" >
+        <div ng-repeat="widget in homeCtrl.widgets">
+            <div class="col-xs-24 col-sm-12 col-md-8">
+                <div class="panel panel-default chartPanel">
+                    <div class="panel-heading">
+                    <ul class="list-inline clearfix">
+                        <li>
+                            <a ng-href="#{{widget.link}}/{{homeCtrl.entityRouteId}}">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <h3 class="panel-title">
+                            <span ng-bind="widget.title"></span>
+                            </h3>
+                        </li>
+                        <li class="pull-right">
+                            <div class="panel-menu text-right">
+								<a ng-href="#{{widget.link}}/{{homeCtrl.entityRouteId}}/alert-view">
+                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+								</a>
+                            </div>
+                        </li>
+                        <li class="pull-right">
+                            <div class="notification" ng-class="{'notification-danger': homeCtrl.notificationColor[$index]==='critical','notification-warning': homeCtrl.notificationColor[$index]==='warning'}" popover-placement="auto bottom"  popover-title="{{homeCtrl.dynamicPopover.title}}" uib-popover-template="homeCtrl.dynamicPopover.templateUrl" ng-click="homeCtrl.overlay($event)">
+                            <span class="glyphicon" ng-class="{'glyphicon-warning-sign':homeCtrl.alert_count[$index]!==0}" aria-hidden="true"></span>
+                            <span>{{homeCtrl.alert_count[$index]}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+                    <div class="panel-body">
+                    <h4 class="text-center" ng-bind="widget.headline"></h4>
+                    </div>
+                    <donut-chart data="homeCtrl.data[$index]" severity="homeCtrl.alertStatus[$index]"></donut-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
