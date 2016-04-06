@@ -42,31 +42,13 @@ gulp.task('watch', function() {
 
 /* Task to watch less changes */
 gulp.task('watch-less', function() {
-    gulp.watch('./src/assets/skalera-less/**/*.less' , ['compile-less']);
+    gulp.watch('./src/assets/demo-less/**/*.less' , ['compile-less']);
 });
 
-//Copy JS files from src/assets/vendor to
 gulp.task('copyfiles', function() {
-    gulp.src('./src/assets/fonts/**/*.{ttf,woff,woff2,eot,svg}')
-        .pipe(gulp.dest('./public/fonts/'));
-
-      gulp.src('./src/assets/images/*.*')
-        .pipe(gulp.dest('./public/images/'));
-
-    gulp.src('./src/assets/css/*.css')
-        .pipe(gulp.dest('./public/css/'));
-
-    gulp.src('./src/assets/vendor/**/*.js')
-        .pipe(gulp.dest('./public/js/'));
-
-    gulp.src('./src/assets/vendor/**/*.css')
-        .pipe(gulp.dest('./public/css/'));
 
     gulp.src('./src/index.html')
         .pipe(gulp.dest('./public/'));
-
-    //gulp.src('./src/app/charts/*.js')
-    //    .pipe(gulp.dest('./public/js/charts/'));
 
     gulp.src('./src/app/config/*.js')
         .pipe(gulp.dest('./public/js/config/'));
@@ -79,12 +61,6 @@ gulp.task('copyfiles', function() {
 
     gulp.src('./src/app/json/api/v1/**/*.json')
         .pipe(gulp.dest('./public/json/'));
-});
-
-gulp.task('compile-less', function() {
-    gulp.src('./src/assets/skalera-less/site.less')
-        .pipe(less())
-        .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('build', [ 'copyfiles' ,'compile-less','browserify','watch', 'watch-less' , 'startProxyServer']);
