@@ -1,6 +1,4 @@
-/**
- * Created by piyusht on 31/12/15.
- */
+
 var gulp = require('gulp');
 var less       = require('gulp-less');
 
