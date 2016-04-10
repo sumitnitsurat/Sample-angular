@@ -1,0 +1,25 @@
+<div ng-class="{'sidebar':true,'sidebar-text-view':navbarCtrl.shouldDisplayName(),'sidebar-icon-view':navbarCtrl.menuWidth(),'hidden-sidebar':navbarCtrl.shouldHide()}" ng-mouseover="navbarCtrl.hoverIn()" ng-mouseleave="navbarCtrl.hoverOut()"   >
+    <ul class="nav nav-sidebar clearfix">
+        <li ng-repeat="sideMenuUrl in navbarCtrl.sideMenus" ng-class="{ active: navbarCtrl.isActive('{{sideMenuUrl.link}}') }">
+            <a ui-sref="entityList.top({tab:sideMenuUrl.link})">
+                <span class="{{sideMenuUrl.class}}" aria-hidden="true" ng-show="navbarCtrl.shouldDisplayIcon()"></span>
+                <span class="nav-sidebar-text" ng-show="navbarCtrl.shouldDisplayName()" ng-bind="sideMenuUrl.title"></span>
+            </a>
+        </li>
+
+        <li class="sidebar-slider">
+            <a href="#" ng-click="navbarCtrl.menuToggle()">
+                <span ng-class="{'glyphicon glyphicon-arrow-right':navbarCtrl.menuWidth() && navbarCtrl.expansionMode,'glyphicon glyphicon-arrow-left':navbarCtrl.shouldDisplayIcon() && !expansionMode}" aria-hidden="true"></span>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar bottom">
+        <li>
+            <a href="#">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                <span class="nav-sidebar-text">Configuration</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

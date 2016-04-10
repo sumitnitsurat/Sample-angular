@@ -1,9 +1,9 @@
-module.exports = function (ajaxCall, TIME,ALERT_LEVEL) {
+module.exports = function ($http, TIME_PROPS) {
     var du = this;
 
     this.getAllMetricsData = function (apiSubUrl) {
         var apiUrl = './metrics.json';
-        return ajaxCall.get(apiUrl);
+        return $http.get(apiUrl);
     };
 
     du.getAlertCount = function (alertData) {
@@ -36,7 +36,7 @@ module.exports = function (ajaxCall, TIME,ALERT_LEVEL) {
         return index;
     }
 
-    du.selectedTimeFilter = TIME.TODAY;
+    du.selectedTimeFilter = TIME_PROPS.TODAY;
 
     du.getTimeFilterRange = function () {
         return du.selectedTimeFilter;

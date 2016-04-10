@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggle left-navbar-toggle pull-left" ng-click="navbarCtrl.menuToggle()" ng-mouseover="navbarCtrl.hoverIn()" ng-mouseleave="navbarCtrl.hoverOut()" style="display: inline-block;">
+            <span class="sr-only">Toggle left navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Skalera – Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" >
+        <ul class="nav navbar-nav">
+            <li>
+                <select class="selectpicker" data-live-search="true">
+                    <optgroup label="Browse" data-collapsible-optgroup= "true" data-load-collapse-optgroup ="true">
+
+                        <optgroup label="Recent" data-max-options="2">
+                            <option data-tokens="" ng-repeat="time in headerCtrl.serverHeader" ng-bind="time"></option>
+                        </optgroup>
+                        <optgroup label="Recent" data-max-options="2">
+                            <option data-tokens="" ng-repeat="time in headerCtrl.serverHeader" ng-bind="time"></option>
+                        </optgroup>
+                        <optgroup label="Recent" data-max-options="2">
+                            <option data-tokens="" ng-repeat="time in headerCtrl.serverHeader" ng-bind="time"></option>
+                        </optgroup>
+                    </optgroup>
+                    <optgroup label="Recent" data-max-options="2">
+                        <option data-tokens="" ng-repeat="time in headerCtrl.serverHeader" ng-bind="time"></option>
+                    </optgroup>
+                </select>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" >
+
+            <li class="showDays" ng-include="'views/components/Search.html'"></li>
+
+
+
+            <li ng-repeat="filter in t = angular.equals(t, headerCtrl.getFilters()) ? t : headerCtrl.getFilters()"
+                ng-class="{'dropdown':true,'disabled': !filter.isEnabled}" class="showDays">
+                <a ng-class="{'dropdown-toggle':true,'disabled': !filter.isEnabled}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><label ng-bind="filter.getTitle()"> </label><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="data in filter.values" ng-class="{active : headerCtrl.isSelected(data.title)}">
+                    <a ui-sref="{{data.link}}" ng-click="headerCtrl.setShowValue(data.title)" ng-bind="data.title"></a></li>
+                </ul>
+            </li>
+
+            <!-- Time Range Filter -->
+            <li ng-class="{'dropdown':true}" class="showDays">
+                <a ng-class='dropdown-toggle' data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <label ng-bind="headerCtrl.timeFilterSelectedValue.label"> -</label>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="time in headerCtrl.TIME" ng-class="{active : headerCtrl.timeFilterSelectedValue.label===time.label}">
+                        <a ng-href="" ng-click="headerCtrl.setSelectedTimeFilter(time)" ng-bind="time.label"></a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

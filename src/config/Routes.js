@@ -1,7 +1,3 @@
-/**
- * Created by piyusht on 12/01/16.
- */
-
 module.exports = function ($routeProvider) {
     $routeProvider
     .when('/home',
