@@ -1,5 +1,6 @@
 /app/node_modules/*
 public/
+plugins/ckeditor/plugins/a11yhelp/dialogs/lang
 plugins/ckeditor/lang
 # Logs
 logs
