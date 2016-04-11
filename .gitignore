@@ -1,5 +1,5 @@
 /app/node_modules/*
-/app/public/*
+public/
 # Logs
 logs
 *.log
