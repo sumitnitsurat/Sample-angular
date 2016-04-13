@@ -71,6 +71,9 @@ gulp.task('copyfiles', function() {
 
     gulp.src('./src/config/*.js')
         .pipe(gulp.dest('./public/js/config/'));
+		
+	 gulp.src('./charts/**/*.*')
+        .pipe(gulp.dest('./public/charts/'));	
 
     gulp.src('./src/views/**/*.html')
         .pipe(gulp.dest('./public/views/'));
