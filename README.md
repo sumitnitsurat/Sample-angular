@@ -1,6 +1,7 @@
-# Angular js functionality with sample controller , directive , service , filter and views .
+# Widget creator tool using Admin LTE UI and Angular js functionality with sample controller , directive , service , filter and views .
+Create graph of your own choice with your own data .
 
-#Steps to run project :
+@Steps to run project :
 
 #npm install
 #gulp build
