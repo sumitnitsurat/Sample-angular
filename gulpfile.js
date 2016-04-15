@@ -78,7 +78,7 @@ gulp.task('copyfiles', function() {
     gulp.src('./src/views/**/*.html')
         .pipe(gulp.dest('./public/views/'));
 
-     gulp.src('./src/app/json/*.json')
+     gulp.src('./src/json/*.json')
          .pipe(gulp.dest('./public/json/'));
 
     gulp.src('./src/app/json/api/v1/**/*.json')

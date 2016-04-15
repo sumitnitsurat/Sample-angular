@@ -1,9 +1,12 @@
 'use strict';
 
-module.exports = function ($scope, $filter, $location, dataUtilService) {
+module.exports = function (dataUtilService,areaGraphService) {
     var self = this;
-
-	$(document).ready(function(){
-		AreaGraph();
+	areaGraphService.getAreaGraphData(function(response){
+		var areaGraphData = response;
+		var areaGraphOptions = areaGraphService.getAreaGraphOptions();
+		AreaGraph(areaGraphData.data,areaGraphOptions.AreaGraphOptions);
 	});
+
+
 }
