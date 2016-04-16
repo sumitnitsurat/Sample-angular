@@ -7,7 +7,6 @@ var jshint = require('gulp-jshint');
 var csslint = require('gulp-csslint');
 var bootlint = require('gulp-bootlint');
 
-
 var nodemon = require('gulp-nodemon');
 //var connect = require('gulp-connect');
 var connect = require('gulp-connect');
@@ -17,28 +16,13 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 
 
-/*  gulp.task('connect', function () {
+ /* gulp.task('connect', function () {
      connect.server({
          root: 'public',
          port: 9999
      })
  }); */
  
-gulp.task('demon', function () {
-  nodemon({
-    script: 'server.js',
-    ext: 'js',
-    env: {
-      'NODE_ENV': 'development'
-    }
-  })
-    .on('start', ['watch'])
-    .on('change', ['watch'])
-    .on('restart', function () {
-      console.log('restarted!');
-    });
-});
-
  gulp.task('browserify', function() {
      // Grabs the app.js file
      return browserify('./src/app.js')
@@ -58,6 +42,7 @@ gulp.task('watch-less', function() {
     gulp.watch('./src/assets/demo-less/**/*.less' , ['compile-less']);
 });
 
+//gulp tasks to copy files in public folder
 gulp.task('copyfiles', function() {
 
     gulp.src('index.html')
@@ -102,7 +87,21 @@ gulp.task('copyfiles', function() {
 
 /*..... admin LTE tasks ...*/
 
-
+//gulp task to use node.js server file  
+gulp.task('server', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: {
+      'NODE_ENV': 'development'
+    }
+  })
+    .on('start', ['watch'])
+    .on('change', ['watch'])
+    .on('restart', function () {
+      console.log('restarted!');
+    });
+});
 
 gulp.task('watch', function () {
   gulp.watch('build/less/*.less,build/less/skins/*.less,dist/js/app.js', [ /* dependencies */ ]);
@@ -144,22 +143,6 @@ gulp.task('jshint', function () {
   ;
 });
 
-gulp.task('jshint', function () { // WARNING: potential duplicate task
-  return gulp
-    .src('dist/js/demo.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-  ;
-});
-
-gulp.task('jshint', function () { // WARNING: potential duplicate task
-  return gulp
-    .src('dist/js/pages/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-  ;
-});
-
 gulp.task('csslint', function () {
   return gulp
     .src('dist/css/AdminLTE.css')
@@ -180,8 +163,8 @@ gulp.task('lint', ["jshint","csslint","bootlint"]);
 /*......Admin Lte tasks endds.....*/
 
 
-gulp.task('build', [ 'copyfiles' , 'demon','browserify','watch', 'watch-less' ]);
+gulp.task('build', [ 'copyfiles' , 'browserify','watch', 'watch-less']);
 gulp.task('cd', [ 'copyfiles' ,'browserify' ]);
 
 // 'watch', 'watch-less',
-gulp.task('default', ['demon']);
+//gulp.task('default', ['demon']);

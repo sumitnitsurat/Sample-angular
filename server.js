@@ -2,9 +2,8 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 var obj;
-
+//read data from public folder
 app.use(express.static(__dirname+ "/public"));
-app.set('port', 9999);
 app.get('/getAreaGraphData',function(req,res){
 
 	// Read the file and send to the callback
@@ -18,6 +17,6 @@ app.get('/getAreaGraphData',function(req,res){
 	res.send(obj);
 });
 
-app.listen(app.get('port'), function() {
+app.listen(5555, function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
