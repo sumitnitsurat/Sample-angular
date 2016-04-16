@@ -2,7 +2,7 @@ module.exports = function ($http, AREA_GRAPH_OPTIONS) {
 	'use strict';
     var self = this;
 	self.getAreaGraphData = function(callback){
-	$http.get('./json/AreaGraph.json')
+	$http.get('/getAreaGraphData')
 		.then(function(response){
 			callback(response);
 		})

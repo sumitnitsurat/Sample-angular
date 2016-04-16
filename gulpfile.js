@@ -17,12 +17,27 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 
 
- gulp.task('connect', function () {
+/*  gulp.task('connect', function () {
      connect.server({
          root: 'public',
          port: 9999
      })
- });
+ }); */
+ 
+gulp.task('demon', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: {
+      'NODE_ENV': 'development'
+    }
+  })
+    .on('start', ['watch'])
+    .on('change', ['watch'])
+    .on('restart', function () {
+      console.log('restarted!');
+    });
+});
 
  gulp.task('browserify', function() {
      // Grabs the app.js file
@@ -165,8 +180,8 @@ gulp.task('lint', ["jshint","csslint","bootlint"]);
 /*......Admin Lte tasks endds.....*/
 
 
-gulp.task('build', [ 'copyfiles' ,'connect','browserify','watch', 'watch-less' ]);
+gulp.task('build', [ 'copyfiles' , 'demon','browserify','watch', 'watch-less' ]);
 gulp.task('cd', [ 'copyfiles' ,'browserify' ]);
 
 // 'watch', 'watch-less',
-//gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['demon']);
