@@ -4,17 +4,17 @@
 require('angular');
 require('angular-route');
 require('angular-ui-bootstrap');
-require('angular-ui-router');
-    
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap']);
+ require('angular-ui-router');   
+var app = angular.module('app', ['ui.router', 'ui.bootstrap']);
 
 //Controllers
 
 var homeController = require('./controllers/HomeController');
 var sideMenuController = require('./controllers/SideMenuController');
 var headerController = require('./controllers/HeaderController');
+var createDashboardController = require('./controllers/CreateDashboardController');
 //Directives
-var sideNavbarDirective = require('./directives/SideNavbar');
+var createDashboardDirective = require('./directives/CreateDashboardDirective');
 var donutDirective = require('./directives/DonutGraph');
 var tableDirective = require('./directives/TableDirective');
 //Services
@@ -29,7 +29,7 @@ var areaGraphConfig = require('./config/AreaGraphConfig');
 
 var routesConfig = require('./config/Routes');
 
-app.config([ '$routeProvider', routesConfig]);
+app.config([ '$stateProvider', '$urlRouterProvider', routesConfig]);
 app.constant('HOME_PROPS',homeConfig);
 app.constant('TIME_PROPS',timeConfig);
 app.constant('AREA_GRAPH_OPTIONS',areaGraphConfig);
@@ -40,9 +40,10 @@ app.service('areaGraphService', ['$http', 'AREA_GRAPH_OPTIONS',areaGraphService]
 app.filter('data',serverDataFilter );
 
 app.controller('HomeController', ['dataUtilService','areaGraphService',homeController ]);
-app.controller('SideMenuController', ['$scope', '$location', 'dataUtilService',sideMenuController ]);
+app.controller('SideMenuController', ['$scope', '$uibModal',sideMenuController ]);
 app.controller('HeaderController', ['$scope', 'TIME_PROPS', 'dataUtilService',headerController ]);
+app.controller('CreateDashboardController', ['$scope',createDashboardController ]);
 
-app.directive('sideNavbar', sideNavbarDirective);
+app.directive('createDashboard', ['$compile',createDashboardDirective]);
 app.directive('donutChart', donutDirective);
 })();

@@ -1,5 +1,5 @@
  <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar" ng-controller="SideMenuController as sideMenuCtrl">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
@@ -18,9 +18,8 @@
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+          <ul class="treeview-menu dashboard-menu">
+            <li class="active"><a ui-sref="home.dashboard({id:1})"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -144,7 +143,8 @@
           </ul>
         </li>
       </ul> 
-		<button type="button" class="btn btn-warning btn-flat" style="margin-top: 5%;margin-left: 36%;">Add Dashboard <span class="glyphicon glyphicon-plus"></span></button>
+	   <div ng-include="'./views/components/AddDashboardPopup.html'"></div>
+	<button type="button" class="btn btn-warning btn-flat" ng-click="open()"style="margin-top: 5%;margin-left: 36%;">Add Dashboard <span class="glyphicon glyphicon-plus"></span></button>
 
     </section>
     <!-- /.sidebar -->

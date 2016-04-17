@@ -18,5 +18,5 @@ app.get('/getAreaGraphData',function(req,res){
 });
 
 app.listen(5555, function() {
-    console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port 5555');
 });

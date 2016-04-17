@@ -1,0 +1,18 @@
+   <script type="text/ng-template" id="myModalContent.html" ng-controller="CreateDashboardController as crtDashboardCtrl">
+        <div class="modal-header">
+            <h3 class="modal-title" style="display:inline-block">Dashboard Name : </h3>
+			<input type="text" name="Dashboard" ng-model="crtDashboardCtrl.dashboardName" />
+        </div>
+        <div class="modal-body">
+			<h3>Add existing graphs </h3>
+			<ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" create-dashboard="crtDashboardCtrl.dashboardName">Create</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
