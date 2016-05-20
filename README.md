@@ -3,8 +3,8 @@
   
 # Getting Started
 
-  npm install
-  gulp build
+  npm install </br>
+  gulp build </br>
   point your browser to - localhost:9999
   
 #Contributing to the project :
